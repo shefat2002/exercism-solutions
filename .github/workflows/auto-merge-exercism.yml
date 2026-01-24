@@ -3,15 +3,18 @@ name: Auto-merge Exercism Bot PRs
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+permissions:
+  pull-requests: write
+  contents: write
 
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
-    if: contains(fromJSON('["exercism-bot", "exercism[bot]", "exercism-solution-syncer", "exercism-solution-syncer[bot]"]'), github.actor)
+    if: github.actor == 'exercism-solutions-syncer[bot]'
     
     steps:
       - name: Enable auto-merge
-        run: gh pr merge --auto --squash "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: squash
