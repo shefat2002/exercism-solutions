@@ -7,7 +7,7 @@ on:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
-    if: github.actor == 'exercism-bot' || github.actor == 'exercism[bot]'
+    if: contains(fromJSON('["exercism-bot", "exercism[bot]", "exercism-solution-syncer", "exercism-solution-syncer[bot]"]'), github.actor)
     
     steps:
       - name: Enable auto-merge
