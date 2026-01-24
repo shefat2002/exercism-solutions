@@ -14,7 +14,8 @@ jobs:
     if: github.actor == 'exercism-solutions-syncer[bot]'
     steps:
       - name: Enable auto-merge
-        uses: peter-evans/enable-pull-request-automerge@v3
+        uses: peter-evans/enable-pull-request-automerge@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           merge-method: squash
+          pull-request-number: ${{ github.event.pull_request.number }}
