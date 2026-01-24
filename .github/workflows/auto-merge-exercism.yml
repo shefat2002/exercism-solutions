@@ -7,7 +7,7 @@ on:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
-    if: github.actor == 'exercism-bot' || github.actor == 'exercism[bot]'
+    if: github.actor == 'exercism-bot' || github.actor == 'exercism[bot]' || github.actor == 'exercism-solution-syncer' || github.actor == 'exercism-solution-syncer[bot]'
     
     steps:
       - name: Enable auto-merge
