@@ -21,4 +21,5 @@ jobs:
             ${{ github.event.pull_request.number }} \
             --repo "${{ github.repository }}" \
             --squash \
-            --auto
+            --auto\
+            --delete-branch
